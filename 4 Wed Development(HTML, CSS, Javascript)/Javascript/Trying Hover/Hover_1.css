@@ -1,0 +1,54 @@
+div{
+	position:relative;
+	border:5px solid black;
+	height:100px;
+	width:200px;
+}
+p:hover{
+	background-color: yellow;
+}
+.B{
+	position: relative;
+	border: 5px dotted;
+}
+.red{
+	background: red;
+}
+.red:hover{
+  z-index:999;
+}
+.blue{
+  background: blue;
+  color:white;
+}	
+.blue:hover{
+  z-index:-1;
+}
+p{
+	border:1px solid red;
+	width:50%;	
+/*   Modify line below to use four position values; */
+  	position:absolute;
+	top:10px;
+	left:50px;
+
+	/*The code below removes default browser styling.*/
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+}
+
+/*TEST ME!!
+	1) Open this page and look at it.  The 	
+		paragraphs are all in their default
+		location.  The top/left values are 
+		ignored.
+	2) Using Inspect Element, uncomment the
+		next line so the position is relative.
+		Each of the paragraphs have moved from 
+		their ORIGINAL position
+	3) Change the position to absolute.  Now they
+		are placed 100 right 100 down from their PARENT
+	4) Change the position to fixed.  Now they 	
+		are placed 100 down and 100 right from the BROWSER*/
