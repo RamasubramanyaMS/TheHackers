@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19BIT0424</title>
+    <style>
+        .block {
+            background-color: antiquewhite;
+            width: 50%;
+            margin-right: auto;
+            margin-left: auto;
+            border: 2px solid black;
+            padding: 10px;
+        }
+
+        .error_msg {
+            color: red;
+        }
+
+        .btn {
+            border-radius: 30%;
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $("document").ready(function () {
+            $('#username_invalid').hide();
+            $('#email_invalid').hide();
+            $('#password_invalid').hide();
+            $('#password_mismatch').hide();
+
+
+            $("#username").focusout(function () {
+                check_username();
+            });
+            $("#email_id").focusout(function () {
+                check_email();
+            });
+            $("#password").focusout(function () {
+                check_pass();
+            });
+            $("#password-check").focusout(function () {
+                check_cnf();
+            });
+            function check_pass() {
+                var pass_len = $('#password').val().length;
+                if (pass_len < 4) {
+                    $('#password_invalid').html('is too short(minimum is 4 characters)');
+                    $('#password_invalid').show();
+                }
+                else if (pass_len >= 4)
+                    $('#password_invalid').hide();
+            }
+            function check_username() {
+                var user = $('#username').val();
+                for (let index = 0; index < user.length; index++) {
+                    var flag = false;
+                    const element = user[index];
+                    if ((element >= 'A' && element <= 'Z') || (element >= 'a' && element < 'z') || (!isNaN(element))) {
+                        $('#username_invalid').hide();
+                    }
+                    else
+                        switch (element) {
+                            case '@': ;
+                            case '_': ;
+                            case '.': ;
+                            case '-': $('#username_invalid').hide(); break;
+                            default: flag = true; break;
+
+                        };
+                    if (flag == true) {
+                        $('#username_invalid').html('should only contain letter, numbers, or .-_@');
+                        $('#username_invalid').show();
+                        break;
+                    }
+                }
+                if (user.length == 0) {
+                    $('#username_invalid').html('cannot be blank');
+                    $('#username_invalid').show();
+                }
+            }
+            function check_email() {
+                var user = $('#email_id').val();
+                if (user.length == 0) {
+                    $('#email_invalid').html('can\'t be blank');
+                    $('#email_invalid').show();
+                }
+                else {
+                    $('#email_invalid').hide();
+                }
+            }
+            function check_cnf() {
+                var pass = $('#password').val();
+                var cnf_pass = $('#password-check').val();
+
+                if (pass != cnf_pass) {
+                    $('#password_mismatch').html('Password not matching');
+                    $('#password_mismatch').show();
+                } else {
+                    $('#password_mismatch').hide();
+
+                }
+            }
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="block">
+        <h1>Sign Up</h1>
+        <p>Already have an account? <a href="#">Log in</a></p>
+        <form id="form">
+            <span>Username</span><br>
+            <input type="text" class="textbox" name="user_id" id="username">
+            <span class="error_msg" id="username_invalid"></span><br>
+            <span>Email Address</span><br>
+            <input type="text" class="textbox" name="email_id" id="email_id">
+            <span class="error_msg" id="email_invalid"></span><br>
+            <span>Password</span><br>
+            <input type="password" class="textbox" name="password" id="password">
+            <span class="error_msg" id="password_invalid"></span><br>
+            <span>Confirm Password</span><br>
+            <input type="password" class="textbox" name="password-check" id="password-check">
+            <span class="error_msg" id="password_mismatch"></span><br><br>
+            <input class="btn" type="submit" value="Sign up">
+        </form>
+    </div><br>
+</body>
+
+</html>
